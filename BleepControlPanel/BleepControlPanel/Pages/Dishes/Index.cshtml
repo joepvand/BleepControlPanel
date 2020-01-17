@@ -1,0 +1,48 @@
+﻿@page
+@model BleepControlPanel.DishIndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dish[0].Dishname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dish[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dish[0].Ingredients)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Dish) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dishname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredients)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,64 @@
+﻿@page
+@model BleepControlPanel.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Edit, Add or Remove users</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User[0].Email)
+        </th>
+        <th style="width: 30%">
+            @Html.DisplayNameFor(model => model.User[0].allergies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User[0].DateCreated)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.User[0].Password)
+        </th>*@
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.User)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td style="width: 30%;">
+                <label style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                    @Html.DisplayFor(modelItem => item.allergies)
+                </label>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>*@
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
