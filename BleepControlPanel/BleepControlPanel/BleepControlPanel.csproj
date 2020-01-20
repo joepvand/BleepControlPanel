@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-BleepControlPanel-8709954D-3E19-4BE4-9E89-A90DD7286A88</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Pages\Favorieten\**" />
+    <Content Remove="Pages\Favorieten\**" />
+    <EmbeddedResource Remove="Pages\Favorieten\**" />
+    <None Remove="Pages\Favorieten\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />

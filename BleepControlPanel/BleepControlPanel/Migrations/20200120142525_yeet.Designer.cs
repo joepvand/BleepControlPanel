@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BleepControlPanel.Data.Migrations
+namespace BleepControlPanel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200116211453_huts")]
-    partial class huts
+    [Migration("20200120142525_yeet")]
+    partial class yeet
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,6 +42,37 @@ namespace BleepControlPanel.Data.Migrations
                     b.ToTable("Dishes");
                 });
 
+            modelBuilder.Entity("BleepControlPanel.Models.Favoriet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Product_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("User_Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("date_added")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Favoriet");
+                });
+
             modelBuilder.Entity("BleepControlPanel.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -50,7 +81,6 @@ namespace BleepControlPanel.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("allergie")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("barcode")
@@ -58,7 +88,6 @@ namespace BleepControlPanel.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ingredient")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("naam")
@@ -72,6 +101,54 @@ namespace BleepControlPanel.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("BleepControlPanel.Models.Shoppinglist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Creation_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date_updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Shoppinglist");
+                });
+
+            modelBuilder.Entity("BleepControlPanel.Models.ShoppinglistProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ShoppinglistId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppinglistId");
+
+                    b.ToTable("ShoppinglistProduct");
                 });
 
             modelBuilder.Entity("BleepControlPanel.Models.User", b =>
@@ -100,7 +177,6 @@ namespace BleepControlPanel.Data.Migrations
                         .HasMaxLength(60);
 
                     b.Property<string>("allergies")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -306,6 +382,37 @@ namespace BleepControlPanel.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BleepControlPanel.Models.Favoriet", b =>
+                {
+                    b.HasOne("BleepControlPanel.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("BleepControlPanel.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("BleepControlPanel.Models.Shoppinglist", b =>
+                {
+                    b.HasOne("BleepControlPanel.Models.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BleepControlPanel.Models.ShoppinglistProduct", b =>
+                {
+                    b.HasOne("BleepControlPanel.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("BleepControlPanel.Models.Shoppinglist", "Shoppinglist")
+                        .WithMany()
+                        .HasForeignKey("ShoppinglistId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

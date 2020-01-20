@@ -1,0 +1,42 @@
+﻿@page
+@model BleepControlPanel.Pages.Favorites.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Favorite</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Favorite.Id" />
+            <div class="form-group">
+                <label asp-for="Favorite.date_added" class="control-label"></label>
+                <input asp-for="Favorite.date_added" class="form-control" />
+                <span asp-validation-for="Favorite.date_added" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Favorite.User_Id" class="control-label"></label>
+                <input asp-for="Favorite.User_Id" class="form-control" />
+                <span asp-validation-for="Favorite.User_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Favorite.Product_Id" class="control-label"></label>
+                <input asp-for="Favorite.Product_Id" class="form-control" />
+                <span asp-validation-for="Favorite.Product_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

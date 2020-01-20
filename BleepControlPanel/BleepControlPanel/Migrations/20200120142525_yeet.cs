@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BleepControlPanel.Data.Migrations
+namespace BleepControlPanel.Migrations
 {
-    public partial class nieuwevalues1 : Migration
+    public partial class yeet : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
