@@ -19,5 +19,6 @@ namespace BleepControlPanel.Data
         public DbSet<BleepControlPanel.Models.Shoppinglist> Shoppinglist { get; set; }
         public DbSet<BleepControlPanel.Models.ShoppinglistProduct> ShoppinglistProduct { get; set; }
         public DbSet<BleepControlPanel.Models.Favorite> Favorite { get; set; }
+        public DbSet<BleepControlPanel.Areas.Identity.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
