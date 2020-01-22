@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 using BleepControlPanel;
 using BleepControlPanel.Data;
 using BleepControlPanel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BleepControlPanel
 {
+    [Authorize(Roles = "Admin")]
+
     public class ProductIndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;

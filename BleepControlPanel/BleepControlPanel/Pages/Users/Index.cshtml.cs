@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BleepControlPanel
 {
-    
+    [Authorize(Roles = "Admin")]
+
     public class IndexModel : PageModel
     {
         private readonly BleepControlPanel.Data.ApplicationDbContext _context;

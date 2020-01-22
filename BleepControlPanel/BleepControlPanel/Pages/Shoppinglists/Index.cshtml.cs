@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BleepControlPanel.Data;
 using BleepControlPanel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BleepControlPanel.Pages.Shoppinglists
+
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly BleepControlPanel.Data.ApplicationDbContext _context;
@@ -19,7 +22,7 @@ namespace BleepControlPanel.Pages.Shoppinglists
             _context = context;
         }
 
-        public IList<Shoppinglist> Shoppinglist { get;set; }
+        public IList<Shoppinglist> Shoppinglist { get; set; }
 
         public async Task OnGetAsync()
         {

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BleepControlPanel.Data;
 using BleepControlPanel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BleepControlPanel
 {
+    [Authorize(Roles = "Admin")]
     public class DishIndexModel : PageModel
     {
         private readonly BleepControlPanel.Data.ApplicationDbContext _context;

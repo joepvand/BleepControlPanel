@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BleepControlPanel.Data;
 using BleepControlPanel.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
-namespace BleepControlPanel.Pages.Favorites
+namespace BleepControlPanel.Pages.WebsiteUsers
 {
     [Authorize(Roles = "Admin")]
-
     public class IndexModel : PageModel
     {
         private readonly BleepControlPanel.Data.ApplicationDbContext _context;
@@ -22,11 +22,11 @@ namespace BleepControlPanel.Pages.Favorites
             _context = context;
         }
 
-        public IList<Favorite> Favorite { get;set; }
+        public IList<IdentityUser> User { get;set; }
 
         public async Task OnGetAsync()
         {
-            Favorite = await _context.Favorite.ToListAsync();
+            User = await _context.Users.ToListAsync();
         }
     }
 }
